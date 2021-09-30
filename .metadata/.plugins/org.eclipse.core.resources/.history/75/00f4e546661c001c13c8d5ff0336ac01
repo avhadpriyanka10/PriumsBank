@@ -1,0 +1,12 @@
+Feature:Login functionality for Primus_Bank
+
+Background: Sccessfully Login 
+Given user open a "webdriver.chrome.driver" browser and exe "F:\\Automation Support\\chromedriver.exe" 
+Given user enter urlLink as "http://primusbank.qedgetech.com/"         
+Scenario: Login functionality with valid credentials
+	
+When user enter "Admin" as username
+When user enter "Admin" as a password into password 
+When user click on login  button
+Then user get message as "Welcome to Admin"
+Then window browser close

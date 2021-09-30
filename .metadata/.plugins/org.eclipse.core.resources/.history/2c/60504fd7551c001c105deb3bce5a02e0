@@ -1,0 +1,8 @@
+package bank1;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class PriLogin 
+{   ChromeDriver driver;
+
+}

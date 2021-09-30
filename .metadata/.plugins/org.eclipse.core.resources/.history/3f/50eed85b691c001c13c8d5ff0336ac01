@@ -1,0 +1,77 @@
+package bank1;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class PriLogin 
+{   ChromeDriver driver;
+
+
+
+@Given("user open a {string} browser and exe {string}")
+public void user_open_a_browser_and_exe(String brwChrome, String exe)
+
+{  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+     System.setProperty(brwChrome, exe);
+     driver= new ChromeDriver();
+}
+
+@Given("user enter urlLink as {string}")
+public void user_enter_url_link_as(String link1) 
+{   driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+   driver.get(link1);
+}
+
+ @When ("^user enter (.+) as username$")
+public void user_enter_as_username(String uname) 
+{
+
+	driver.findElement(By.xpath("//*[@name='txtuId']")).sendKeys(uname);
+}
+
+@When("^user enter (.+) as a password into password$")
+public void user_enter_as_a_password_into_password(String passwrd) 
+{
+	  driver.findElementById("txtPword").sendKeys(passwrd);
+		 
+}
+@When("user click on login  button")
+public void user_click_on_login_button() 
+{
+   driver.findElementByXPath("//*[@id='login']").click();
+}
+@Then("user get a message as {string}")
+public void user_get_a_message_as(String string) {
+	 try{
+	    	
+	    	String value="Welcome to Admin";
+	    	String actual= driver.findElementByXPath("//[text()='Welcome to Admin']").getText();
+	    	
+	    	if(value.equals(actual))
+	    	{
+	    		System.out.println("Test case pass");
+	    	}
+	    	else
+	    	{
+	    		System.out.println("Test case fail");
+	    	}}
+	    	catch(Exception e)
+	    	{
+	    		System.out.println("Test case pass");
+	    	}
+}
+
+
+@Then("window browser close")
+public void window_browser_close()
+{
+    driver.close();
+}
+}

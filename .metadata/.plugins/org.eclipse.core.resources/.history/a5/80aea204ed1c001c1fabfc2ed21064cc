@@ -1,0 +1,20 @@
+Feature: Login functionality 
+
+Background: user is successfully logged in
+Given user open1 "webdriver.chrome.driver" browser and exe "F:\\Automation Support\\chromedriver.exe"
+Given user enter1 url as "http://primusbank.qedgetech.com/"         
+
+Scenario: Login functionality with valid credentials
+	
+When user enter "Admin" as a username
+When user enter "Admin" as a password
+When user click on login button
+When user click on Branches button         
+When user Select "INDIA" as Country     
+When user Select "GOA" as State
+When user Select "GOA" as City  
+                                             
+Then user get message as "Welcome to Admin"
+Then browser window close 
+
+

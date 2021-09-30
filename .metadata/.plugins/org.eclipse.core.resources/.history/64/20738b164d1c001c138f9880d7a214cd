@@ -1,0 +1,107 @@
+package bank;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class Login 
+{   ChromeDriver driver;
+
+
+@Given("user open1 {string} browser and exe {string}")
+public void user_open1_browser_and_exe(String string, String string2)
+{  System.setProperty(string, string2);
+      
+driver= new  ChromeDriver();
+}
+
+@Given("user enter1 url as {string}")
+public void user_enter1_url_as(String url) 
+{  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  
+    driver.get(url);
+    
+}
+
+	
+
+	@When("user enter {string} as a username")
+	public void user_enter_as_a_username(String username)
+	{  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		//try{
+		
+		driver.findElement(By.xpath("//*[@name='txtuId']")).sendKeys(username);
+		//}catch(Exception e)
+		//{
+		//   System.out.println(e);	
+			
+	//	}
+		
+  //  driver.findElementById("txtuId").sendKeys(username);
+	}
+
+	@When("user enter {string} as a password")
+	public void user_enter_as_a_password(String password)
+	
+	{ //try
+	//{
+	
+	    driver.findElementById("txtPword").sendKeys(password);
+	   // }catch(Exception e)
+	//{
+	    	// System.out.println(e);	
+	}//}
+
+	@When("user click on login button")
+	public void user_click_on_login_button() 
+	{
+	 driver.findElementById("login").click();
+	}
+
+	@When("user click on Branches button")
+	public void user_click_on_branches_button() 
+	{
+	    driver.findElementByXPath("//*[@src='images/Branches_but.jpg']").click();
+	}
+
+	@When("user Select {string} as Country")
+	public void user_select_as_country(String string)
+	{  Select country= new Select (driver.findElementByXPath("//*[@id='lst_countryS']"));
+	     country.selectByVisibleText("INDIA");
+	}
+
+	@When("user Select {string} as State")
+	public void user_select_as_state(String Sttatename) 
+	{
+		Select state= new Select (driver.findElementByXPath("//*[@id='lst_stateS']"));
+	     state.selectByVisibleText("GOA");
+	}
+
+	@When("user Select {string} as City")
+	public void user_select_as_city(String Cityname)
+	{
+	   Select city= new Select(driver.findElementByXPath("//*[@id='lst_cityS']"));
+	   city.selectByVisibleText("CHENNAI");
+	}
+
+	@Then("user get message as {string}")
+	public void user_get_message_as(String validate) 
+	{
+	    
+	}
+
+	@Then("browser window close")
+	public void browser_window_close() {
+	    
+	}
+
+
+
+}
